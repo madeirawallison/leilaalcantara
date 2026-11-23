@@ -148,7 +148,7 @@ button{font:inherit;cursor:pointer}
 .countdown__grid span{font-size:.74rem;text-transform:uppercase;letter-spacing:.14em;color:#cbbfae}
 
 /* ---------- Lotes ---------- */
-.lotes{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.lotes{display:grid;grid-template-columns:repeat(auto-fit,minmax(0,380px));justify-content:center;gap:20px}
 .lote{position:relative;border-radius:22px;padding:30px 26px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);transition:transform .3s}
 .lote__tag{display:inline-block;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;font-weight:700;padding:5px 12px;border-radius:999px;background:rgba(255,255,255,.1);color:#d9cfc1;margin-bottom:16px}
 .lote h3{font-family:var(--serif);font-size:1.9rem;margin:0 0 4px;color:#fff;font-weight:600}

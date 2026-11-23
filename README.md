@@ -10,8 +10,8 @@ Tudo fica em [`js/config.js`](js/config.js):
 - `pacotes` — fotos e preço de cada pacote (hoje 10 fotos R$ 450 e 20 fotos R$ 650).
 - `ensaio.duracao`, `ensaio.parcelas` — aparecem no bloco "Valores" quando preenchidos.
 - `ensaio.vagasRestantes` — mostra "Restam X horários" no topo e no agendamento. Atualize a cada ensaio fechado.
-- `lotes[].preco` — (opcional) valor por degrau, se a Leila decidir subir o preço por lote (1º lote até 30/11, 2º lote 01–13/12, encaixe expresso 14–22/12).
-  O site troca de lote sozinho pela data e faz a contagem regressiva.
+- `lotes` — prazos da agenda: entrega antes do Natal (até 13/12) e encaixe expresso (14–22/12). O valor é o mesmo nos dois; `preco` só se algum prazo mudar de valor.
+  O site troca de prazo sozinho pela data e faz a contagem regressiva.
 - `metaPixelId` — ID do Pixel da Meta. Com ele preenchido, o site registra `Contact` (clique no WhatsApp) e `Lead` (pedido enviado pelo agendamento).
 - `mensagens.anuncio` — mensagem do WhatsApp para quem chega por anúncio (link com `utm_source` ou `fbclid`).
 

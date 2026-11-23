@@ -34,22 +34,18 @@ window.SITE_CONFIG = {
     { fotos: 20, preco: 650, destaque: "Mais escolhido" }
   ],
 
-  // Degraus de urgência (datas no formato AAAA-MM-DD, valem até 23:59 do dia "ate")
+  // Prazos da agenda (AAAA-MM-DD, valem até 23:59 do dia "ate").
+  // O valor é o mesmo o mês todo; a urgência é o prazo de entrega antes do Natal.
+  // "preco" é opcional: só preencha se algum prazo tiver valor diferente.
   lotes: [
     {
-      id: "lote1",
-      nome: "1º lote",
-      ate: "2026-11-30",
-      preco: null,                    // ex.: 390  (número, sem R$)
-      chamada: "Agenda aberta com mais opções de horário. Agende essa semana."
-    },
-    {
-      id: "lote2",
-      nome: "2º lote",
-      de: "2026-12-01",
+      id: "natal",
+      nome: "Entrega antes do Natal",
       ate: "2026-12-13",
       preco: null,
-      chamada: "Ainda dá tempo de receber antes do Natal."
+      chamada: "Agende até 13/12 e receba as fotos editadas antes do dia 24.",
+      contagem: "Para receber antes do Natal, agende em até",
+      topo: "Para receber as fotos antes do Natal, agende em até"
     },
     {
       id: "expresso",
@@ -57,7 +53,9 @@ window.SITE_CONFIG = {
       de: "2026-12-14",
       ate: "2026-12-22",
       preco: null,
-      chamada: "Última chance: ensaio + entrega expressa antes da ceia."
+      chamada: "Última chance: ensaio + entrega expressa antes da ceia.",
+      contagem: "O encaixe expresso termina em",
+      topo: "Últimos encaixes com entrega antes da ceia: faltam"
     }
   ],
 

@@ -157,8 +157,8 @@
 
   var cdLabel = $("#countdown-label");
   if (atual) {
-    chipLote.textContent = "🎄 " + atual.nome + " aberto até " + fmtDM(atual.ate);
-    cdLabel.textContent = (atual.id === "expresso" ? "O encaixe expresso termina em" : "O " + atual.nome + " termina em");
+    chipLote.textContent = "🎄 " + (atual.id === "expresso" ? "Encaixe expresso até " : "Entrega antes do Natal: agende até ") + fmtDM(atual.ate);
+    cdLabel.textContent = atual.contagem || "Termina em";
     var alertEl = $("#booking-alert span");
     if (alertEl) alertEl.textContent = atual.chamada + (E.vagasRestantes ? " Restam " + E.vagasRestantes + " horários." : "");
   } else {
@@ -177,7 +177,7 @@
     $("#cd-d").textContent = pad(d); $("#cd-h").textContent = pad(h);
     $("#cd-m").textContent = pad(m); $("#cd-s").textContent = pad(s);
     var resto = d > 0 ? d + "d " + pad(h) + "h " + pad(m) + "min" : pad(h) + "h " + pad(m) + "min " + pad(s) + "s";
-    topText.textContent = atual.nome + " do Ensaio de Natal termina em " + resto + (E.vagasRestantes ? " · restam " + E.vagasRestantes + " horários" : "");
+    topText.textContent = (atual.topo || "Agenda de Natal: faltam") + " " + resto + (E.vagasRestantes ? " · restam " + E.vagasRestantes + " horários" : "");
     if (diff === 0) location.reload();
   }
   tick();

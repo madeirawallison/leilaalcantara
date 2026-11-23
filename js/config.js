@@ -23,11 +23,16 @@ window.SITE_CONFIG = {
 
   // Detalhes do ensaio (null = não mostra o número)
   ensaio: {
-    duracao: null,         // ex.: "40 min"
-    fotos: null,           // ex.: 15
+    duracao: "50 min",     // tempo médio do ensaio
     parcelas: null,        // ex.: 3  (mostra "em até 3x")
     vagasRestantes: null   // ex.: 8  (mostra "Restam 8 horários" — atualize a cada ensaio fechado)
   },
+
+  // Pacotes do Ensaio de Natal (preço em reais, só o número)
+  pacotes: [
+    { fotos: 10, preco: 450 },
+    { fotos: 20, preco: 650, destaque: "Mais escolhido" }
+  ],
 
   // Degraus de urgência (datas no formato AAAA-MM-DD, valem até 23:59 do dia "ate")
   lotes: [
@@ -36,7 +41,7 @@ window.SITE_CONFIG = {
       nome: "1º lote",
       ate: "2026-11-30",
       preco: null,                    // ex.: 390  (número, sem R$)
-      chamada: "Menor valor da temporada. Agende essa semana."
+      chamada: "Agenda aberta com mais opções de horário. Agende essa semana."
     },
     {
       id: "lote2",

@@ -134,11 +134,17 @@
 <section class="section section--green" id="valores">
   <div class="container">
     <div class="section__head section__head--light">
-      <p class="eyebrow eyebrow--light"><span class="line"></span>Quanto antes, melhor</p>
-      <h2 class="title">Quem agenda primeiro <em>paga menos.</em></h2>
-      <p class="lead">O valor sobe em degraus até o Natal. Garanta o seu enquanto o lote atual está aberto.</p>
+      <p class="eyebrow eyebrow--light"><span class="line"></span>Valores</p>
+      <h2 class="title">Escolha o seu <em>pacote.</em></h2>
+      <p class="lead" id="valores-lead">Ensaio guiado no cenário de Natal, com as fotos editadas entregues antes da ceia.</p>
     </div>
 
+    <div class="pacotes" id="pacotes"><!-- gerado pelo JS --></div>
+
+    <ul class="inclui" id="inclui"><!-- gerado pelo JS --></ul>
+
+    <div class="prazos">
+      <h3 class="prazos__title">Agende a tempo de receber <em>antes do Natal</em></h3>
     <div class="countdown" id="countdown" aria-live="polite">
       <p class="countdown__label" id="countdown-label">O 1º lote termina em</p>
       <div class="countdown__grid">
@@ -150,11 +156,10 @@
     </div>
 
     <div class="lotes" id="lotes"><!-- gerado pelo JS --></div>
-
-    <ul class="inclui" id="inclui"><!-- gerado pelo JS --></ul>
+    </div>
 
     <div class="center mt">
-      <a href="#agendar" class="btn btn--gold btn--lg">Quero garantir o valor atual</a>
+      <a href="#agendar" class="btn btn--gold btn--lg">Quero garantir meu horário</a>
     </div>
   </div>
 </section>
@@ -273,7 +278,12 @@
       </fieldset>
 
       <fieldset>
-        <legend><span class="num">4</span> Seu nome</legend>
+        <legend><span class="num">4</span> Qual pacote?</legend>
+        <div class="pills pills--pkg" id="pacote-escolha" role="radiogroup" aria-label="Pacote"></div>
+      </fieldset>
+
+      <fieldset>
+        <legend><span class="num">5</span> Seu nome</legend>
         <label class="field"><input id="nome" type="text" placeholder="Como posso te chamar?" maxlength="60" autocomplete="given-name"></label>
       </fieldset>
 

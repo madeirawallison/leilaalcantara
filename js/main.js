@@ -93,11 +93,38 @@
       var preco = l.preco
         ? '<p class="lote__price"><small>a partir de</small>' + money(l.preco) + "</p>" +
           (E.parcelas ? '<p class="lote__date">ou em até ' + E.parcelas + "x</p>" : "")
-        : '<p class="lote__price lote__price--ask">Valor no WhatsApp</p>';
+        : "";
       return '<article class="lote ' + estado + ' reveal"><span class="lote__tag">' + tag + "</span>" +
         "<h3>" + l.nome + '</h3><p class="lote__date">' + data + "</p>" + preco +
         '<p class="lote__pitch">' + l.chamada + "</p></article>";
     }).join("");
+  }
+
+  // Pacotes
+  var pacotes = (C.pacotes || []).filter(function (p) { return p.preco && p.fotos; });
+  var menorPreco = pacotes.length ? Math.min.apply(null, pacotes.map(function (p) { return p.preco; })) : null;
+  function nomePacote(p) { return p.fotos + " fotos editadas"; }
+  var pacEl = $("#pacotes");
+  if (pacEl) {
+    pacEl.innerHTML = pacotes.length ? pacotes.map(function (p) {
+      return '<article class="pacote' + (p.destaque ? " is-featured" : "") + '">' +
+        (p.destaque ? '<span class="pacote__tag">' + p.destaque + "</span>" : "") +
+        '<p class="pacote__fotos"><b>' + p.fotos + "</b> fotos editadas</p>" +
+        '<p class="pacote__price">' + money(p.preco) + "</p>" +
+        (E.parcelas ? '<p class="pacote__note">ou em até ' + E.parcelas + "x</p>" : "") +
+        '<p class="pacote__note">' + (E.duracao ? E.duracao + " de ensaio (tempo médio)" : "Ensaio guiado") + "</p>" +
+        '<a href="#agendar" class="btn ' + (p.destaque ? "btn--red" : "btn--gold") + ' btn--block js-pick" data-fotos="' + p.fotos + '">Quero esse</a>' +
+        "</article>";
+    }).join("") : '<p class="center"><a href="' + waUrl(baseMsg) + '" target="_blank" rel="noopener" class="btn btn--gold">Consultar valores no WhatsApp</a></p>';
+  }
+  var vl = $("#valores-lead");
+  if (vl && E.duracao) vl.textContent = "Em média " + E.duracao.replace("min", "minutos") + " de ensaio guiado no cenário de Natal, com as fotos editadas entregues antes da ceia.";
+  if (menorPreco) {
+    var chips = $(".hero__chips");
+    var c = document.createElement("span");
+    c.className = "chip chip--glass";
+    c.textContent = "💛 A partir de " + money(menorPreco);
+    chips.insertBefore(c, chips.children[1]);
   }
 
   // O que inclui
@@ -105,7 +132,7 @@
   if (inclui) {
     var itens = [
       E.duracao ? E.duracao + " de ensaio guiado" : "Ensaio guiado do início ao fim",
-      E.fotos ? E.fotos + " fotos editadas" : "Fotos editadas em alta resolução",
+      pacotes.length ? pacotes.map(function (p) { return p.fotos; }).join(" ou ") + " fotos editadas" : "Fotos editadas em alta resolução",
       "Cenário de Natal exclusivo",
       "Consultoria de look",
       "Entrega antes do Natal"
@@ -121,9 +148,11 @@
     chipVagas.classList.add("chip--hot");
     chipVagas.textContent = "🔥 Restam " + E.vagasRestantes + " horários";
   }
-  if (E.parcelas) {
-    var fp = $("#faq-preco");
-    if (fp) fp.textContent = "É a foto que você vai olhar por 20 anos, em todos os Natais. E dá para parcelar em até " + E.parcelas + "x. Me chama no WhatsApp que eu te passo os detalhes.";
+  var fp = $("#faq-preco");
+  if (fp && pacotes.length) {
+    fp.textContent = "É a foto que você vai olhar por 20 anos, em todos os Natais. São " + pacotes.length + " opções: " +
+      pacotes.map(function (p) { return p.fotos + " fotos por " + money(p.preco); }).join(" ou ") +
+      (E.parcelas ? ", com parcelamento em até " + E.parcelas + "x" : "") + ".";
   }
 
   var cdLabel = $("#countdown-label");
@@ -184,8 +213,23 @@
         render();
       });
     }
+    var pkgEl = $("#pacote-escolha");
+    pkgEl.innerHTML = pacotes.map(function (p) {
+      return '<button type="button" class="pill" role="radio" aria-checked="false" data-v="' + nomePacote(p) + " (" + money(p.preco) + ')" data-fotos="' + p.fotos + '">' +
+        "<b>" + p.fotos + " fotos</b> · " + money(p.preco) + "</button>";
+    }).join("") + '<button type="button" class="pill" role="radio" aria-checked="false" data-v="ainda estou em dúvida">Ainda estou em dúvida</button>';
+
     radio(datesEl, "data");
     radio(perEl, "periodo");
+    radio(pkgEl, "pacote");
+
+    // "Quero esse" nos cards de pacote já marca a opção no agendamento
+    $$(".js-pick").forEach(function (a) {
+      a.addEventListener("click", function () {
+        var b = $('[data-fotos="' + a.getAttribute("data-fotos") + '"]', pkgEl);
+        if (b) b.click();
+      });
+    });
 
     flex.addEventListener("change", function () {
       datesEl.classList.toggle("is-disabled", flex.checked);
@@ -221,6 +265,7 @@
       lines.push("👥 Pessoas: " + (pessoas.value || "?"));
       var idades = $("#idades").value.trim();
       if (idades) lines.push("🧒 Idade das crianças: " + idades);
+      if (state.pacote) lines.push("📸 Pacote: " + state.pacote);
       lines.push("");
       lines.push("Tem horário disponível?");
       return lines.join("\n");

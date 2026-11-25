@@ -408,3 +408,19 @@ button{font:inherit;cursor:pointer}
   .pacotes{grid-template-columns:minmax(0,1fr);gap:28px}
   .pacote.is-featured{order:-1}
 }
+
+/* ---------- Local / mapa ---------- */
+.local{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:48px;align-items:center}
+.local__addr{font-style:normal;font-size:1.05rem;line-height:1.6;color:var(--green);margin:0 0 14px;padding-left:16px;border-left:3px solid var(--gold)}
+.local__addr strong{display:block;font-size:1.2rem}
+.local__note{margin:0 0 24px;color:#5b5048}
+.local__btns{display:flex;flex-wrap:wrap;gap:12px}
+.local__map{border-radius:20px;overflow:hidden;box-shadow:0 24px 60px -28px rgba(29,58,46,.55);aspect-ratio:4/3;background:#e8ddd0}
+.local__map iframe{display:block;width:100%;height:100%;border:0}
+@media (max-width:900px){
+  .local{grid-template-columns:minmax(0,1fr);gap:32px}
+  .local__map{aspect-ratio:1/1}
+}
+@media (max-width:640px){
+  .local__btns .btn{flex:1 1 100%}
+}

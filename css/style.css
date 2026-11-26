@@ -424,3 +424,15 @@ button{font:inherit;cursor:pointer}
 @media (max-width:640px){
   .local__btns .btn{flex:1 1 100%}
 }
+
+/* ---------- Sobre: foto de bastidores e grade de 6 serviços ---------- */
+.about__inset{position:absolute;right:-24px;top:-28px;width:46%;aspect-ratio:3/2;object-fit:cover;border-radius:18px;border:5px solid var(--white,#fff);box-shadow:var(--shadow);transform:rotate(3deg)}
+@media (max-width:900px){
+  .about__inset{right:10px;top:-20px;width:44%}
+  .services{grid-template-columns:repeat(2,minmax(0,1fr));max-width:none;gap:14px}
+  .service{aspect-ratio:3/4}
+  .service strong{font-size:1.25rem}
+  .service small{font-size:.78rem}
+  .service em{font-size:.8rem}
+  .service__body{padding:14px}
+}

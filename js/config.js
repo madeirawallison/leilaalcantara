@@ -11,7 +11,7 @@ window.SITE_CONFIG = {
   instagram: "leilaalcantarafotografia",
 
   // Meta Pixel (Gerenciador de Eventos). Deixe "" para desligar.
-  metaPixelId: "",
+  metaPixelId: "1809260193669437",
 
   // Mensagens pré-preenchidas no WhatsApp.
   // "anuncio" é usada quando a pessoa chega por link de anúncio (utm_source / fbclid),

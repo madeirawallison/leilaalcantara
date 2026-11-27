@@ -46,7 +46,7 @@
 <div class="topbar" id="topbar">
   <span class="topbar__dot"></span>
   <span id="topbar-text">Ensaio de Natal 2026 · agenda aberta</span>
-  <a href="#agendar" class="topbar__link">Garantir horário →</a>
+  <a href="#" class="topbar__link js-wa" data-origem="topbar">Reservar minha data com R$ 100 →</a>
 </div>
 
 <header class="header" id="header">
@@ -79,12 +79,11 @@
   <div class="container hero__content">
     <p class="eyebrow eyebrow--light"><span class="line"></span>Ensaio de Natal 2026 · Pampulha, BH</p>
     <h1 class="hero__title">Eles não vão ter esse tamanho <em>no próximo Natal.</em></h1>
+    <p class="hero__sinal">🎄 Reserve sua data com apenas <strong>R$ 100 de sinal</strong>. O restante no dia do ensaio.</p>
     <p class="hero__lead">Cenário exclusivo montado só para isso, eu guio cada pose (inclusive das crianças que não param quietas) e as fotos chegam <strong>antes da ceia</strong>.</p>
     <div class="hero__ctas">
-      <a href="#agendar" class="btn btn--red btn--lg">Escolher meu horário</a>
-      <a href="#" class="btn btn--ghost btn--lg js-wa" data-origem="hero">
-        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wa"/></svg> Falar no WhatsApp
-      </a>
+      <a href="#" class="btn btn--red btn--lg js-wa" data-origem="hero-reservar"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wa"/></svg> Reservar minha data com R$ 100</a>
+      <a href="#agendar" class="btn btn--ghost btn--lg">Ver datas disponíveis</a>
     </div>
     <div class="hero__chips">
       <span class="chip chip--glass" id="chip-lote">🎄 Entrega antes do Natal: agende até 13/12</span>
@@ -142,6 +141,11 @@
 
     <div class="pacotes" id="pacotes"><!-- gerado pelo JS --></div>
 
+    <div class="sinal-box">
+      <p class="sinal-box__title">🪙 Sinal de R$ 100 para garantir sua data. O restante é pago no dia do ensaio.</p>
+      <p class="sinal-box__note">💳 No cartão de crédito há acréscimo da taxa da operadora.</p>
+    </div>
+
     <ul class="inclui" id="inclui"><!-- gerado pelo JS --></ul>
 
     <div class="prazos">
@@ -154,13 +158,14 @@
         <div><b id="cd-m">00</b><span>min</span></div>
         <div><b id="cd-s">00</b><span>seg</span></div>
       </div>
+      <p class="countdown__note">⚠️ As vagas são limitadas e o horário só fica reservado com o sinal.</p>
     </div>
 
     <div class="lotes" id="lotes"><!-- gerado pelo JS --></div>
     </div>
 
     <div class="center mt">
-      <a href="#agendar" class="btn btn--gold btn--lg">Quero garantir meu horário</a>
+      <a href="#" class="btn btn--gold btn--lg js-wa" data-origem="valores-reservar"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wa"/></svg> Reservar minha data com R$ 100</a>
     </div>
   </div>
 </section>
@@ -294,9 +299,9 @@
       </div>
 
       <button type="submit" class="btn btn--wa btn--lg btn--block">
-        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wa"/></svg> Enviar pedido no WhatsApp
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wa"/></svg> Reservar minha data com R$ 100
       </button>
-      <p class="form__note">Sem compromisso. A resposta chega pelo WhatsApp.</p>
+      <p class="form__note">A Leila confirma o horário pelo WhatsApp e te passa o Pix do sinal.</p>
     </form>
   </div>
 </section>
@@ -378,6 +383,7 @@
       <details><summary>Meu filho não para quieto. Vai dar certo?</summary><p>Ótimo! As melhores fotos são as que ninguém posou. Eu conduzo o ensaio com brincadeira e no tempo da criança, e é justamente dessa bagunça que saem as fotos mais lindas.</p></details>
       <details><summary>Não tenho roupa para o ensaio.</summary><p>Eu te ajudo a montar o look. É só me mandar pelo WhatsApp foto do que vocês têm no armário que a gente combina a família toda.</p></details>
       <details><summary>Não gosto de tirar foto.</summary><p>Eu guio cada pose, do começo ao fim. Você só precisa estar com quem ama, o resto é comigo.</p></details>
+      <details><summary>Preciso pagar tudo agora?</summary><p>Não! Você garante sua data com um sinal de <strong>R$ 100 via Pix</strong>, e o restante é pago no dia do ensaio. No cartão de crédito há acréscimo da taxa da operadora.</p></details>
       <details><summary>Está caro?</summary><p id="faq-preco">É a foto que você vai olhar por 20 anos, em todos os Natais. Me chama no WhatsApp que eu te passo os valores e as formas de pagamento.</p></details>
       <details><summary>Quando recebo as fotos?</summary><p>Antes do Natal. Quem agenda até 13/12 recebe as fotos editadas antes do dia 24. De 14 a 22/12 tem o encaixe expresso, com entrega rápida para dar tempo da ceia.</p></details>
       <details><summary>Posso levar os avós ou o pet?</summary><p>Pode sim! Me conta no pedido quem vai participar para eu preparar o cenário e o tempo de ensaio certinho.</p></details>
@@ -415,7 +421,7 @@
     <h2 class="final__title">A próxima história que eu vou contar <em>pode ser a da sua família.</em></h2>
     <p class="final__sub" id="final-sub">Vagas limitadas. Garanta o seu horário antes que a agenda feche.</p>
     <div class="hero__ctas center">
-      <a href="#agendar" class="btn btn--gold btn--lg">Escolher meu horário</a>
+      <a href="#" class="btn btn--gold btn--lg js-wa" data-origem="final-reservar"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wa"/></svg> Reservar minha data com R$ 100</a>
       <a href="#" class="btn btn--ghost btn--lg js-wa" data-origem="final"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wa"/></svg> WhatsApp</a>
     </div>
   </div>
@@ -445,7 +451,7 @@
   <div class="fab__bubble" id="fab-bubble" hidden>
     <button class="fab__close" id="fab-close" aria-label="Fechar">×</button>
     <img src="img/leila/leila-avatar.jpg" alt="" width="36" height="36">
-    <p><strong>Leila</strong><span id="fab-text">Oi! Ainda dá tempo para o Natal 🎄 Quer ver os horários?</span></p>
+    <p><strong>Leila</strong><span id="fab-text">Oi! Ainda dá tempo para o Natal 🎄 Você reserva sua data com só R$ 100 de sinal.</span></p>
   </div>
   <a href="#" class="fab__btn js-wa" data-origem="flutuante" aria-label="Falar com a Leila no WhatsApp">
     <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wa"/></svg>
@@ -454,8 +460,7 @@
 
 <!-- Barra fixa no celular -->
 <div class="mbar" id="mbar">
-  <a href="#agendar" class="btn btn--gold">Agendar ensaio</a>
-  <a href="#" class="btn btn--wa js-wa" data-origem="barra-mobile"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wa"/></svg> WhatsApp</a>
+  <a href="#" class="btn btn--wa js-wa" data-origem="barra-mobile"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wa"/></svg> Reservar minha data com R$ 100</a>
 </div>
 
 <!-- Lightbox -->
@@ -464,7 +469,7 @@
   <button class="lightbox__nav lightbox__prev" aria-label="Anterior">‹</button>
   <img alt="">
   <button class="lightbox__nav lightbox__next" aria-label="Próxima">›</button>
-  <div class="lightbox__cta"><a href="#agendar" class="btn btn--gold">Quero fotos assim</a></div>
+  <div class="lightbox__cta"><a href="#" class="btn btn--gold js-wa" data-origem="galeria"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wa"/></svg> Quero fotos assim</a></div>
 </div>
 
 <!-- Ícones -->

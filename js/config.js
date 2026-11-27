@@ -17,15 +17,17 @@ window.SITE_CONFIG = {
   // "anuncio" é usada quando a pessoa chega por link de anúncio (utm_source / fbclid),
   // assim dá para saber quais agendamentos vieram do tráfego.
   mensagens: {
-    anuncio: "Oi Leila! Vi o anúncio do Ensaio de Natal e quero saber os horários",
-    site: "Oi Leila! Vim pelo seu site e quero saber os horários do Ensaio de Natal"
+    anuncio: "Oi Leila! Vi o anúncio do Ensaio de Natal e quero reservar minha data com o sinal de R$ 100. Quais horários você tem disponíveis?",
+    site: "Oi Leila! Vim pelo seu site e quero reservar minha data do Ensaio de Natal com o sinal de R$ 100. Quais horários você tem disponíveis?"
   },
 
   // Detalhes do ensaio (null = não mostra o número)
   ensaio: {
     duracao: "50 min",     // tempo médio do ensaio
     parcelas: null,        // ex.: 3  (mostra "em até 3x")
-    vagasRestantes: null   // ex.: 8  (mostra "Restam 8 horários" — atualize a cada ensaio fechado)
+    vagasRestantes: null,  // ex.: 8  (mostra "Restam 8 horários" — atualize a cada ensaio fechado)
+    sinal: 100,            // valor do sinal para reservar a data (null = não mostra)
+    taxaCartao: true       // avisa que no cartão de crédito há acréscimo da taxa da operadora
   },
 
   // Pacotes do Ensaio de Natal (preço em reais, só o número)

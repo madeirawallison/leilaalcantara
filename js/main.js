@@ -41,6 +41,13 @@
 
   // ---------- Links de WhatsApp / Instagram ----------
   function waUrl(msg) { return "https://wa.me/" + C.whatsapp + "?text=" + encodeURIComponent(msg); }
+  // Navegador interno do Instagram/Facebook bloqueia nova aba/popup: lá o WhatsApp abre na mesma aba
+  var inApp = /FBAN|FBAV|FB_IAB|Instagram|Messenger/i.test(navigator.userAgent || "");
+  function openWa(url) {
+    if (inApp) { location.href = url; return; }
+    var w = window.open(url, "_blank", "noopener");
+    if (!w) location.href = url;
+  }
   var igUrl = "https://www.instagram.com/" + C.instagram + "/";
 
   $$(".js-ig").forEach(function (a) { a.href = igUrl; a.target = "_blank"; a.rel = "noopener"; });
@@ -48,8 +55,7 @@
     var msg = a.getAttribute("data-msg") || baseMsg;
     if (a.hasAttribute("data-msg") && origem === "anuncio") msg += " (vi o anúncio)";
     a.href = waUrl(msg);
-    a.target = "_blank";
-    a.rel = "noopener";
+    if (!inApp) { a.target = "_blank"; a.rel = "noopener"; }
     a.addEventListener("click", function () {
       track("Contact", { content_name: a.getAttribute("data-origem") || "whatsapp" });
     });
@@ -113,10 +119,13 @@
         '<p class="pacote__price">' + money(p.preco) + "</p>" +
         (E.parcelas ? '<p class="pacote__note">ou em até ' + E.parcelas + "x</p>" : "") +
         '<p class="pacote__note">' + (E.duracao ? E.duracao + " de ensaio (tempo médio)" : "Ensaio guiado") + "</p>" +
-        '<a href="#agendar" class="btn ' + (p.destaque ? "btn--red" : "btn--gold") + ' btn--block js-pick" data-fotos="' + p.fotos + '">Quero esse</a>' +
+        '<a href="' + waUrl(baseMsg + "\n\n📸 Pacote: " + p.fotos + " fotos editadas (" + money(p.preco) + ")") + '"' + (inApp ? "" : ' target="_blank" rel="noopener"') + ' class="btn ' + (p.destaque ? "btn--red" : "btn--gold") + ' btn--block js-pacote" data-fotos="' + p.fotos + '">Reservar este pacote</a>' +
         "</article>";
     }).join("") : '<p class="center"><a href="' + waUrl(baseMsg) + '" target="_blank" rel="noopener" class="btn btn--gold">Consultar valores no WhatsApp</a></p>';
   }
+  $$(".js-pacote").forEach(function (a) {
+    a.addEventListener("click", function () { track("Contact", { content_name: "pacote-" + a.getAttribute("data-fotos") }); });
+  });
   var vl = $("#valores-lead");
   if (vl && E.duracao) vl.textContent = "Em média " + E.duracao.replace("min", "minutos") + " de ensaio guiado no cenário de Natal, com as fotos editadas entregues antes da ceia.";
   if (menorPreco) {
@@ -137,6 +146,7 @@
       "Consultoria de look",
       "Entrega antes do Natal"
     ];
+    if (E.sinal) itens.push("Reserva com sinal de " + money(E.sinal));
     if (E.parcelas) itens.push("Parcelamento em até " + E.parcelas + "x");
     inclui.innerHTML = itens.map(function (t) { return "<li>" + t + "</li>"; }).join("");
   }
@@ -152,7 +162,8 @@
   if (fp && pacotes.length) {
     fp.textContent = "É a foto que você vai olhar por 20 anos, em todos os Natais. São " + pacotes.length + " opções: " +
       pacotes.map(function (p) { return p.fotos + " fotos por " + money(p.preco); }).join(" ou ") +
-      (E.parcelas ? ", com parcelamento em até " + E.parcelas + "x" : "") + ".";
+      (E.parcelas ? ", com parcelamento em até " + E.parcelas + "x" : "") + "." +
+      (E.sinal ? " Para reservar a data é só um sinal de " + money(E.sinal) + ", e o restante fica para o dia do ensaio." : "");
   }
 
   var cdLabel = $("#countdown-label");
@@ -257,7 +268,7 @@
     function msg() {
       var nome = $("#nome").value.trim();
       var lines = [];
-      lines.push(baseMsg + (nome ? ". Meu nome é " + nome + "." : "."));
+      lines.push(baseMsg + (nome ? " Meu nome é " + nome + "." : ""));
       lines.push("");
       lines.push("📅 Data: " + (flex.checked ? "tenho flexibilidade" : (state.data || "a combinar")));
       lines.push("🕐 Período: " + (state.periodo || "a combinar"));
@@ -266,8 +277,6 @@
       var idades = $("#idades").value.trim();
       if (idades) lines.push("🧒 Idade das crianças: " + idades);
       if (state.pacote) lines.push("📸 Pacote: " + state.pacote);
-      lines.push("");
-      lines.push("Tem horário disponível?");
       return lines.join("\n");
     }
     function render() { $("#preview-msg").textContent = msg(); }
@@ -281,7 +290,7 @@
         return;
       }
       track("Lead", { content_name: "agendamento-site" });
-      window.open(waUrl(msg()), "_blank", "noopener");
+      openWa(waUrl(msg()));
     });
   }
 

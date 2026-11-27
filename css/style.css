@@ -436,3 +436,12 @@ button{font:inherit;cursor:pointer}
   .service em{font-size:.8rem}
   .service__body{padding:14px}
 }
+
+/* ---------- Sinal de R$ 100 ---------- */
+.hero__sinal{display:inline-block;margin:0 0 18px;padding:10px 16px;border-radius:14px;background:rgba(226,196,138,.16);border:1px solid rgba(226,196,138,.55);color:#fbf1dc;font-size:clamp(.98rem,1.5vw,1.1rem);line-height:1.45;backdrop-filter:blur(6px)}
+.hero__sinal strong{color:var(--gold-2)}
+.sinal-box{max-width:720px;margin:28px auto 8px;background:#fff7e6;border-left:4px solid #b8860b;padding:14px 18px;border-radius:10px;color:#3b2c14;text-align:left}
+.sinal-box__title{margin:0 0 6px;font-size:1.06rem;font-weight:700}
+.sinal-box__note{margin:0;font-size:.95rem}
+.countdown__note{margin:14px 0 0;font-size:.92rem;font-weight:600;color:#ffe7a8}
+@media (max-width:640px){ .mbar{grid-template-columns:1fr} }
